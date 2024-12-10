@@ -14,8 +14,8 @@ import {ITwoKittyFactory} from "../src/interfaces/ITwoKittyFactory.sol";
 contract TwoKittyFactoryDeployScript is Script, Consts {
     function run() public {
         uint256 deployerPrivateKey = vm.envUint(PARAM_PK_ACCOUNT);
-        address _owner = vm.envAddress(PARAM_OWNER);
-        address _feeReceiver = _owner;
+        address _owner = address(0x0);
+        address _feeReceiver = address(0x0);
         string memory contractName = TWO_KITTY_FACTORY;
 
         console.log("Fee receiver:  ", _feeReceiver);
@@ -29,8 +29,8 @@ contract TwoKittyFactoryDeployScript is Script, Consts {
         );
 
         ITwoKittyFactory(instance).initialise_ownership(
-            _owner,
-            _feeReceiver
+            _feeReceiver,
+            _owner
         );
 
         vm.stopBroadcast();
